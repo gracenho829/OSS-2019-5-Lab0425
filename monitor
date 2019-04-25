@@ -6,9 +6,13 @@ while ((1))
 do
 	if [[ -e log.txt ]]
 	then
+		sleep 2
 		cur=$( tail -n 1 log.txt )
-		if [[ $cur != $prev ]] 
+		re='^[0-9]+$'
+		if ! [[ $cur =~ $re  ]]
 		then
+			echo "Spoiler Alert!"
+		else [[ $cur != $prev ]] 
 			echo $cur
 			prev=$cur
 		fi
